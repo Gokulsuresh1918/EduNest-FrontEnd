@@ -143,7 +143,7 @@ export default function SideBarRight() {
           </SheetDescription>
         </SheetHeader>
         <div className="grid gap-1 py-4 ">
-          //todo here is an issue
+         
           {students &&
             students.map((student, index) => (
               <div
