@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(req: NextRequest) {
   const room = req.nextUrl.searchParams.get("room");
   const username = req.nextUrl.searchParams.get("username");
-  console.log('this is from route ',room,username);
+  // console.log('this is from route ',room,username);
   console.log()
   
   if (!room) {

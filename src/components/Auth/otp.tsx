@@ -35,7 +35,7 @@ const OtpPage = () => {
     }
     return () => {
       clearInterval(interval);
-    };
+    };  
   }, [timer]);
 
   const handleReset = async (e: React.MouseEvent<HTMLButtonElement>) => {

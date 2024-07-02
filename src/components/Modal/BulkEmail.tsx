@@ -52,23 +52,23 @@ const BulkEmail = () => {
         const response = await axios.get(
           `${BASE_URL}/class/getClassData/${classCode}`
         );
-        console.log('respo', response.data);
+        // console.log('respo', response.data);
         
         const stuId = response.data?.classroom[0]?.students || [];
-        console.log('stuId', stuId);
+        // console.log('stuId', stuId);
   
         const idsArray = stuId.map((item: any) => item._id);
-        console.log('idsArray', idsArray);
+        // console.log('idsArray', idsArray);
   
         const res = await Promise.all(
           idsArray.map((id: any) =>
             axios.get(`${BASE_URL}/class/getStudentData/${id}`)
           )
         );
-        console.log('res.sss', res);
+        // console.log('res.sss', res);
   
         const studentsData = res.map((ele) => ele.data.student);
-        console.log('studentsData', studentsData);
+        // console.log('studentsData', studentsData);
   
         setStudents(studentsData);
       } catch (error) {

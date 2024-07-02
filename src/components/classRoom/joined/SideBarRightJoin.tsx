@@ -32,7 +32,7 @@ export const SideBarJoin = ({ classCode }: { classCode: string }) => {
         const response = await axios.get(
           `${BASE_URL}/class/assignedStudent/${id}`
         );
-        console.log("Assigned tasks fetched:", response.data);
+        // console.log("Assigned tasks fetched:", response.data);
         setAssignment(response.data.tasks || []);
       } catch (error) {
         console.error("Error fetching assigned tasks:", error);

@@ -115,7 +115,7 @@ const ProfilePge: React.FC<ProfilePgeProps> = ({ status }) => {
   };
 
   const handleEditUsername = () => {
-    console.log("Current username:", username);
+    // console.log("Current username:", username);
     setIsEditingUsername(true);
   };
 

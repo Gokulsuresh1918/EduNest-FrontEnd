@@ -54,11 +54,11 @@ export function AssignTask() {
         ));
   
         // Log the raw response for debugging
-        console.log('res', res);
+        // console.log('res', res);
   
         // Extract the student data from the responses
         const studentsData = res.map(ele => ele.data.student);
-        console.log('testing', studentsData);
+        // console.log('testing', studentsData);
   
         // Set the student data in the state
         setStudents(studentsData);

@@ -20,8 +20,8 @@ export function ChangePasswordDialog() {
   const handleSubmit = () => {
     // Your logic to handle form submission
     // This can include validation, password matching, and API calls
-    console.log("Password:", password);
-    console.log("Confirm Password:", confirmPassword);
+    // console.log("Password:", password);
+    // console.log("Confirm Password:", confirmPassword);
     // Close the dialog after handling form submission
     setIsOpen(false);
   }

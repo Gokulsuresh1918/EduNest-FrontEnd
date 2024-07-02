@@ -64,7 +64,7 @@ const SignUpPage = () => {
       const response = await axios.post(`${BASE_URL}/auth/signup`, values);
 
       if (response) {
-        console.log(response.data);
+        // console.log(response.data);
         router.replace("/adminOtp");
       }
     } catch (error) {

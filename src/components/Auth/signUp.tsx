@@ -15,10 +15,8 @@ import googleimg from "../../../public/images/google logo.png";
 import Logo from "../../../public/images/logo.png";
 import imageUrl from "../../../public/images/signupimage.png";
 
-console.log("evidaii vannu");
 
 const BASE_URL = process.env.NEXT_PUBLIC_SERVER_URL;
-console.log("env ann issue", BASE_URL);
 const handleGoogleSignIn = () => {
   window.open(`${BASE_URL}/auth/google/callback`, "_self");
 };
@@ -69,7 +67,7 @@ const SignUpPage = () => {
       const response = await axios.post(`${BASE_URL}/auth/signup`, values);
 
       if (response) {
-        console.log(response.data);
+        // console.log(response.data);
         router.replace("/otpPage");
       }
     } catch (error) {

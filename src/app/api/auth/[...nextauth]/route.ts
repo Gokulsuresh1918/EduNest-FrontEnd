@@ -37,7 +37,7 @@ const authOptions = {
             profileData: profile,
           });
           if(response){
-            console.log('user authenticated succesfully');
+            // console.log('user authenticated succesfully');
             
           }
          

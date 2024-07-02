@@ -159,7 +159,6 @@ export function CreateClass(status: any) {
     const uniqueCode = uniqueCodeElement
       ? (uniqueCodeElement as HTMLInputElement).value
       : "";
-    //todo include domain name
     const message = `🎉 Exciting news Your unique code to join our Edunest classroom is: ${uniqueCode}. 🚀 Start your learning journey today and unlock a world of knowledge. Click the link below to join us: https://edunest.life`;
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");

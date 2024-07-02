@@ -50,7 +50,7 @@ const VideoCall = ({ params }: { params: { classCode: string } }) => {
           const userDataObject = JSON.parse(userDataString);
           const Name = userDataObject.name;
           setName(Name);
-          console.log("The name of the user is:", Name);
+          // console.log("The name of the user is:", Name);
         }
       } catch (e) {
         console.error(e);
@@ -63,7 +63,7 @@ const VideoCall = ({ params }: { params: { classCode: string } }) => {
       try {
         const room = classCode;
         const name = username;
-        console.log("check", username, room);
+        // console.log("check", username, room);
 
         const resp = await fetch(
           `/api/get-participant-token?room=${room}&username=${username}`

@@ -70,7 +70,7 @@ const Sidenav = () => {
   useEffect(() => {
     // Listen for the "assigned" event
     socket.on("assigned", (data) => {
-      console.log("data", data);
+      // console.log("data", data);
       // Update the notification count
       setNotificationCount((prevCount) => prevCount + 1);
     });

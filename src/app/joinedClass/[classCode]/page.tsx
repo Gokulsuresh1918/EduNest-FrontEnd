@@ -23,7 +23,7 @@ const JoinedClass = ({ params }: { params: { classCode: string } }) => {
         `${BASE_URL}/class/fileData/${classCode}`
       );
       const data = responce.data.files;
-      console.log("responce", data);
+      // console.log("responce", data);
 
       SetFile(data);
       // console.log('thid iud stat ',file);

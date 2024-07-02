@@ -45,7 +45,7 @@ export function AnimatedTooltipPreview() {
         const response = await axios.get<{ classroom: Classroom[] }>(
           `${BASE_URL}/class/getClassData/${classCode}`
         );
-        console.log("Classroom:", response.data);
+        // console.log("Classroom:", response.data);
         setClassroomData(response.data.classroom[0]); // Store classroom data in state
       } catch (error) {
         console.error("Error fetching classroom data:", error);
@@ -68,7 +68,7 @@ export function AnimatedTooltipPreview() {
               params: { ids: studentIds }, 
             }
           );
-          console.log("Students data:", response.data);
+          // console.log("Students data:", response.data);
           setStudents(response.data); // Store students data in state
         } catch (error) {
           console.error("Error fetching students data:", error);

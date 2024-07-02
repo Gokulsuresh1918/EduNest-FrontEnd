@@ -62,7 +62,7 @@ const ClassControlller = () => {
     (async () => {
       try {
         const response = await axios.get(`${BASE_URL}/user/classroomData`);
-        console.log(response.data);
+        // console.log(response.data);
 
         // When setting the classes after fetching
         setClasses(response.data);
@@ -80,7 +80,7 @@ const ClassControlller = () => {
 
   const handleAddClass = () => {
     setcreateClassss(!createClassss);
-    console.log(createClassss);
+    // console.log(createClassss);
   };
 
   const handleEditClass = (classData: ClassData) => {

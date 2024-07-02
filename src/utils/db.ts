@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 
-console.log('heelo');
 
 const connect = async () => {
   if (mongoose.connections[0].readyState) return;

@@ -26,7 +26,7 @@ const AddUser = () => {
     try {
       const values = { name, email };
       const response = await axios.post(`${BASE_URL}/user/addUser`, values);
-      console.log("Response:", response.data);
+      // console.log("Response:", response.data);
       toast.success("User registered successfully!");
     } catch (error) {
       console.error("Error:", error);

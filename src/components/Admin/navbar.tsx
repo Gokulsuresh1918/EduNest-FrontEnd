@@ -26,7 +26,7 @@ const NavBar = () => {
   }
 
   const onSignout = () => {
-    console.log('sign out confirmed');
+    // console.log('sign out confirmed');
     Cookies.remove('token', { path: '', secure: true, sameSite: 'strict' });
     localStorage.removeItem('User');
     Router.push('/adminLogin');

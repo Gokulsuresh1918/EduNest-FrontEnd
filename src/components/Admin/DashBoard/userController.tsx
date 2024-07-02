@@ -7,7 +7,6 @@ import Swal from "sweetalert2";
 import AddUser from "../DashBoard/AddUser";
 import { useTheme } from "next-themes"; // Added for theme management
 
-
 interface User {
   _id: string;
   name: string;
@@ -21,7 +20,7 @@ interface User {
 
 const BASEURL = process.env.NEXT_PUBLIC_SERVER_URL;
 
-const UserController = () => { 
+const UserController = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [render, setRender] = useState(false);
@@ -30,12 +29,11 @@ const UserController = () => {
   const [editedUserData, setEditedUserData] = useState<Partial<User>>({});
   const { theme } = useTheme(); // Added to get the current theme
 
-
   useEffect(() => {
     (async () => {
       try {
         const response = await axios.get(`${BASEURL}/user/allUserData`);
-        console.log(response.data);
+        // console.log(response.data);
 
         setUsers(response.data);
       } catch (error) {
@@ -57,7 +55,7 @@ const UserController = () => {
         axios
           .patch(`${BASEURL}/class/blockUser/${userId}`)
           .then((res) => {
-            console.log("Student Blocked");
+            ("Student Blocked");
             setRender(!render);
           })
           .catch((error) => {
@@ -107,7 +105,13 @@ const UserController = () => {
   return (
     <>
       {add && <AddUser />}
-      <div className={`p-6 min-h-screen ${theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-gray-300 text-black'}`}> {/* Updated to apply theme */}
+      <div
+        className={`p-6 min-h-screen ${
+          theme === "dark" ? "bg-gray-800 text-white" : "bg-gray-300 text-black"
+        }`}
+      >
+        {" "}
+        {/* Updated to apply theme */}
         <div className="flex justify-between items-center mb-6">
           <input
             type="text"
@@ -201,4 +205,5 @@ const UserController = () => {
   );
 };
 
-export default UserController; 1
+export default UserController;
+1;
