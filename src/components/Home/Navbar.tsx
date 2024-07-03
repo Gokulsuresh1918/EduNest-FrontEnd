@@ -18,11 +18,14 @@ import {
 } from "@/components/Ui/dropdown-menu";
 import Link from "next/link";
 
-const Nav = () => {
+interface NavProps {
+  className?: string;
+};
+
+const Nav: React.FC<NavProps> = ({ className }) => {
   const { status } = useSession();
   const router = useRouter();
   const cookies = parseCookies();
-  // Check if the code is running in the browser before accessing localStorage
   const value =
     typeof window !== "undefined" ? localStorage.getItem("User") || "" : "";
 
@@ -31,24 +34,20 @@ const Nav = () => {
   };
 
   const handleSignout = () => {
-    // Remove the token cookie
     Cookies.remove("token", {
       secure: true,
       sameSite: "strict",
     });
 
-    // Remove the User item from localStorage
     if (typeof window !== "undefined") {
       localStorage.removeItem("User");
     }
 
-    // Perform the sign out operation
     signOut();
   };
 
   const { theme, setTheme } = useTheme();
 
-  // Update body class based on the theme
   useEffect(() => {
     if (theme === "dark") {
       document.body.classList.add("theme-dark");
@@ -60,7 +59,7 @@ const Nav = () => {
   }, [theme]);
 
   return (
-    <nav className="absolute w-full text-white h-10  ">
+    <nav className="absolute w-full text-white h-10">
       <div className="flex items-center justify-between">
         <div>
           <Image
@@ -75,15 +74,14 @@ const Nav = () => {
 
         <div className="hidden md:flex gap-4 rounded">
           <Link href={'/classrooms'}>
-          
-          <Button
-            className={`text-gray-400 text-lg ${
-              theme === "dark" ? "text-gray-100" : "text-gray-900"
-            } font-bold hover:text-white transition-colors tracking-widest`}
-            variant="ghost"
-          >
-            ClassRooms
-          </Button>
+            <Button
+              className={`text-gray-400 text-lg tour-step-classrooms ${
+                theme === "dark" ? "text-gray-100" : "text-gray-900"
+              } font-bold hover:text-white transition-colors tracking-widest`}
+              variant="ghost"
+            >
+              ClassRooms
+            </Button>
           </Link>
         </div>
 
@@ -91,7 +89,7 @@ const Nav = () => {
           <div className="flex items-center">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="icon">
+                <Button variant="outline" size="icon" className="tour-step-theme">
                   <Sun
                     color="#333"
                     onClick={() => setTheme("dark")}
@@ -121,7 +119,7 @@ const Nav = () => {
           <div className="flex items-center">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="icon">
+                <Button variant="outline" size="icon" className="tour-step-theme">
                   <Sun
                     color="#333"
                     onClick={() => setTheme("dark")}

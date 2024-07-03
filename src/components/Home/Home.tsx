@@ -3,7 +3,8 @@ import Cookie from "js-cookie";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Joyride from "react-joyride"; // Import Joyride
 import imageUrl from "../../../public/images/bg.svg";
 import landingGroup from "../../../public/images/landing-group.svg";
 import landingGroup2 from "../../../public/images/landing-group2.svg";
@@ -18,9 +19,7 @@ import Link from "next/link";
 
 const Home = () => {
   const [login, setLogin] = useState(false);
-  // const value = localStorage.getItem("User") || "";
   const router = useRouter();
-  // console.log("user", value);
 
   const checkToken = async () => {
     const token = Cookie.get("token");
@@ -39,12 +38,59 @@ const Home = () => {
   }
 
   const { theme, setTheme } = useTheme();
-  // console.log('check-theme',theme);
+
+  // Initialize and configure the tour steps in the component state
+  const [tourSteps, setTourSteps] = useState([
+    {
+      target: ".tour-step-1",
+      content: "Welcome to the Edunest landing page!",
+    },
+    {
+      target: ".tour-step-2",
+      content:
+        "Join a classroom easily from here and Create your own classroom here. using the unique code provided by your classroom creator.",
+    },
+    {
+      target: ".tour-step-3",
+      content: "Don’t forget to check out our premium features!",
+    },
+    {
+      target: ".tour-step-classrooms",
+      content: "Here you can access all classrooms.",
+    },
+    {
+      target: ".tour-step-theme",
+      content: "Use this button to switch between light and dark modes.",
+    },
+  ]);
+
+  // State to control Joyride
+  const [runTour, setRunTour] = useState(true);
+
+  // Check if the tour has been shown before
+  useEffect(() => {
+    const isTourShown = localStorage.getItem("isTourShown");
+    if (!isTourShown) {
+      setRunTour(true);
+      localStorage.setItem("isTourShown", "true");
+    }
+  }, []);
 
   return (
     <div>
-      <Nav />
-      {/* <div className="h-screen  bg-[#08071a]"></div> */}
+      <Nav className="tour-step-1" />
+      <Joyride
+        steps={tourSteps}
+        continuous
+        showProgress
+        showSkipButton
+        run={runTour} // Ensure the tour runs on load
+        styles={{
+          options: {
+            zIndex: 10000,
+          },
+        }}
+      />
       {theme == "dark" ? (
         <Image
           src={imageUrl}
@@ -58,9 +104,11 @@ const Home = () => {
           className="absolute object-fill -z-10 w-full"
         />
       )}
-      <main className="    items-center pt-36 justify-between flex flex-col space-y-28">
+      <main className="items-center pt-36 justify-between flex flex-col space-y-28 ">
+        {" "}
+        {/* Added class for tour */}
         <div className="flex justify-between text-center">
-          <div className="sm:h-[40rem] w-full  flex-col items-center justify-center overflow-hidden rounded-md">
+          <div className="sm:h-[40rem] w-full flex-col items-center justify-center overflow-hidden rounded-md">
             <h1
               className={`sm:pt-48 ${
                 theme === "dark" ? "text-white" : "text-black"
@@ -68,14 +116,12 @@ const Home = () => {
             >
               New Era Of Learning
             </h1>
-            <div className="w-[13rem] sm:w-[60rem] h-5   sm:h-80 relative">
+            <div className="w-[13rem] sm:w-[60rem] h-5 sm:h-80 relative">
               {/* Gradients */}
               <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm" />
               <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4" />
               <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] w-1/4 blur-sm" />
               <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4" />
-
-              {/* Core component */}
               <SparklesCore
                 background="transparent"
                 minSize={0.4}
@@ -84,17 +130,15 @@ const Home = () => {
                 className="w-full h-full"
                 particleColor="#FFFFFF"
               />
-
-              {/* Radial Gradient to prevent sharp edges */}
-              <div className="absolute inset-0   h-full [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
+              <div className="absolute inset-0 h-full [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
             </div>
           </div>
         </div>
-        <div className=" w-[90%] flex justify-center text-white font-mono font-medium text-xs sm:text-lg">
+        <div className="w-[90%] flex justify-center text-white font-mono font-medium text-xs sm:text-lg">
           <p
             className={`tracking-wide ${
               theme === "dark" ? "text-white" : "text-black"
-            }     text-center `}
+            } text-center`}
           >
             Welcome to EDUNEST. Empower educators and learners with seamless
             collaboration through doubt clearing, task management, and resource
@@ -104,33 +148,32 @@ const Home = () => {
             of discovery in online learning today.
           </p>
         </div>
-
-        <div onClick={checkLogin} className="flex justify-center space-x-4">
+        <div
+          onClick={checkLogin}
+          className="tour-step-2  flex justify-center space-x-4"
+        >
           <JoinClass
             status={login}
-            className="px-4 py-2 bg-blue-500 text-white rounded-md text-sm hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+            className=" px-4 py-2 bg-blue-500 text-white rounded-md text-sm hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
           />
           <CreateClass
             status={login}
-            className="px-4 py-2 bg-green-500 text-white rounded-md text-sm hover:bg-green-600 focus:outline-none focus:bg-green-600"
+            className=" px-4 py-2 bg-green-500 text-white rounded-md text-sm hover:bg-green-600 focus:outline-none focus:bg-green-600"
           />
         </div>
-
         <div className="flex flex-col items-center justify-center text-center sm:flex-row sm:space-x-8">
-          {/* Join to a ClassRoom section */}
-          
           <div className="p-6 sm:p-16 w-full sm:w-[60%]">
             <h1 className="font-bold text-3xl sm:text-4xl font-serif">
               Join to a ClassRoom
             </h1>
             <h6 className="text-sm">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor
-              numquam maxime ab maiores nihil quisquam asperiores a
+              Effortlessly join your classroom with the unique code provided by
+              your educator. Collaborate with peers, participate in discussions,
+              and access all the resources you need for an engaging learning
+              experience.{" "}
             </h6>
             <JoinClass />
           </div>
-
-          {/* Image for Join to a ClassRoom on large screens */}
           <div className="hidden lg:block p-6 w-full sm:w-[40%]">
             <Image
               src={landingGroup}
@@ -138,20 +181,17 @@ const Home = () => {
               className="object-cover -z-10"
             />
           </div>
-
-          {/* Create a ClassRoom section */}
           <div className="p-6 sm:p-16 w-full sm:w-[60%]">
             <h1 className="font-bold text-3xl sm:text-4xl font-serif">
               Create a ClassRoom
             </h1>
             <h6 className="text-sm">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor
-              numquam maxime ab maiores nihil quisquam asperiores
+              Empower your teaching with our easy-to-use tools. Create a virtual
+              classroom, manage tasks, share resources, and conduct live
+              sessions to enhance your students' learning journey.{" "}
             </h6>
             <CreateClass />
           </div>
-
-          {/* Image for Create a ClassRoom on large screens */}
           <div className="hidden lg:block p-6 w-full sm:w-[50%]">
             <Image
               src={landingGroup2}
@@ -160,26 +200,35 @@ const Home = () => {
             />
           </div>
         </div>
-
-        <div className=" p-6 rounded-lg shadow-md text-center">
+        <div className="p-6 rounded-lg shadow-md text-center tour-step-3">
           <h1 className="font-bold text-2xl sm:text-5xl mb-4">
             Upgrade to Premium
           </h1>
-          <h3 className="text-xs sm:text-sm md:text-base text-center text-gray-700">
-            Unlock exclusive features and maximize your experience by
-            subscribing now! Gain access to premium content, advanced tools, and
-            personalized benefits. Elevate your journey with us and enjoy a
-            seamless, enhanced user experience. Subscribe today and unlock the
-            full potential of our platform.
+          <h3 className="text-xs sm:text-sm md:text-base text-center px-10 text-gray-400">
+            Unlock exclusive features and elevate your learning experience with
+            Edunest Premium. Our premium subscription maximizes productivity for
+            both educators and learners, providing advanced tools and
+            personalized benefits. Enjoy enhanced collaboration tools to create
+            and manage multiple virtual classrooms seamlessly. Conduct live
+            sessions with premium video conferencing, and offer real-time
+            feedback. Access advanced analytics and reporting tools to track
+            student progress comprehensively. Students gain access to a vast
+            library of premium content, including exclusive study materials,
+            practice tests, and interactive modules. Personalized learning paths
+            help students achieve their academic goals efficiently. Experience
+            an ad-free platform, ensuring uninterrupted focus on educational
+            activities. Benefit from robust security measures and dedicated
+            customer support for a smooth, secure experience. Subscribe to
+            Edunest Premium today and unlock the full potential of our platform.
+            Elevate your teaching and learning experience to new heights with
+            our comprehensive premium features.
           </h3>
-          {/* Optional button for subscription */}
           <Link href={"/subscription"}>
             <button className="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
               Subscribe Now
             </button>
           </Link>
         </div>
-
         <Footer />
       </main>
     </div>
