@@ -2,20 +2,20 @@
 import Cookie from "js-cookie";
 import { useTheme } from "next-themes";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Joyride from "react-joyride"; // Import Joyride
 import imageUrl from "../../../public/images/bg.svg";
 import landingGroup from "../../../public/images/landing-group.svg";
 import landingGroup2 from "../../../public/images/landing-group2.svg";
+import aiphoto from "../../../public/images/file.png";
 import imageUrllight from "../../../public/images/milad-fakurian-UiiHVEyxtyA-unsplash.jpg";
 import Footer from "../Footer/footer";
 import { CreateClass } from "../Modal/CreateClass";
 import { JoinClass } from "../Modal/JoinClass";
 import { SparklesCore } from "../Ui/sparkles";
-import CarouselPlugin from "./curoseal";
 import Nav from "./Navbar";
-import Link from "next/link";
 
 const Home = () => {
   const [login, setLogin] = useState(false);
@@ -55,6 +55,10 @@ const Home = () => {
       content: "Don’t forget to check out our premium features!",
     },
     {
+      target: ".tour-step-4",
+      content: "You Personal AI Tutor is here",
+    },
+    {
       target: ".tour-step-classrooms",
       content: "Here you can access all classrooms.",
     },
@@ -79,18 +83,20 @@ const Home = () => {
   return (
     <div>
       <Nav className="tour-step-1" />
-      <Joyride
-        steps={tourSteps}
-        continuous
-        showProgress
-        showSkipButton
-        run={runTour} // Ensure the tour runs on load
-        styles={{
-          options: {
-            zIndex: 10000,
-          },
-        }}
-      />
+      {runTour && (
+        <Joyride
+          steps={tourSteps}
+          continuous
+          showProgress
+          showSkipButton
+          run={runTour} // Ensure the tour runs on load
+          styles={{
+            options: {
+              zIndex: 10000,
+            },
+          }}
+        />
+      )}
       {theme == "dark" ? (
         <Image
           src={imageUrl}
@@ -161,38 +167,86 @@ const Home = () => {
             className=" px-4 py-2 bg-green-500 text-white rounded-md text-sm hover:bg-green-600 focus:outline-none focus:bg-green-600"
           />
         </div>
-        <div className="flex flex-col items-center justify-center text-center sm:flex-row sm:space-x-8">
-          <div className="p-6 sm:p-16 w-full sm:w-[60%]">
-            <h1 className="font-bold text-3xl sm:text-4xl font-serif">
-              Join to a ClassRoom
-            </h1>
-            <h6 className="text-sm">
-              Effortlessly join your classroom with the unique code provided by
-              your educator. Collaborate with peers, participate in discussions,
-              and access all the resources you need for an engaging learning
-              experience.{" "}
-            </h6>
-            <JoinClass />
-          </div>
-          <div className="hidden lg:block p-6 w-full sm:w-[40%]">
+        <div className="flex flex-col items-center justify-center sm:flex-row sm:space-x-8">
+          {/* Image Section */}
+          <div className="hidden lg:block pl-9 w-full sm:w-[40%]">
             <Image
-              src={landingGroup}
-              alt="Login image"
-              className="object-cover -z-10"
+              src={aiphoto}
+              alt="Classroom Creation Image"
+              className="object-fill"
             />
           </div>
+
+          {/* Text and Call-to-Action Section */}
           <div className="p-6 sm:p-16 w-full sm:w-[60%]">
-            <h1 className="font-bold text-3xl sm:text-4xl font-serif">
-              Create a ClassRoom
+            <h1 className="font-bold text-3xl sm:text-4xl font-serif mb-4">
+              Your Personal AI Tutor
             </h1>
-            <h6 className="text-sm">
+            <p className="text-sm mb-8">
+              "Introducing our AI Personal Tutor—a revolutionary feature
+              designed to enhance learning with intelligent, personalized
+              guidance. Seamlessly interact, receive tailored explanations, and
+              optimize your learning journey effortlessly. Elevate your
+              education with cutting-edge AI technology, ensuring every question
+              finds its expert answer.".
+            </p>
+
+            {/* Call-to-action button or link */}
+            <Link href="/qatutor">
+              <button className="relative inline-flex items-center justify-center bg-slate-800 no-underline group cursor-pointer shadow-2xl shadow-zinc-900 rounded-full p-2 text-sm font-semibold leading-6 text-white transition-transform duration-300 transform hover:scale-110">
+                <span className="absolute inset-0 overflow-hidden rounded-full">
+                  <span className="absolute inset-0 rounded-full bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(56,189,248,0.6)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                </span>
+                <div className="tour-step-4 relative flex space-x-2 items-center z-10 rounded-full bg-zinc-950 py-1 px-6 ring-1 ring-white/10">
+                  <span>Try Personal Tutor</span>
+                  <svg
+                    fill="none"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M10.75 8.75L14.25 12L10.75 15.25"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="1.5"
+                    />
+                  </svg>
+                </div>
+                <span className="absolute bottom-0 left-1.125rem h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-emerald-400/0 via-emerald-400/90 to-emerald-400/0 transition-opacity duration-500 group-hover:opacity-40" />
+              </button>
+            </Link>
+          </div>
+        </div>
+        
+        <div className="flex flex-col items-center justify-center sm:flex-row sm:space-x-8">
+          {/* Image Section */}
+
+          {/* Text and Call-to-Action Section */}
+          <div className="p-6 sm:p-16 w-full sm:w-[60%]">
+            <h1 className="font-bold text-3xl sm:text-4xl font-serif mb-4">
+              Todo Records
+            </h1>
+            <p className="text-sm mb-8">
               Empower your teaching with our easy-to-use tools. Create a virtual
               classroom, manage tasks, share resources, and conduct live
-              sessions to enhance your students' learning journey.{" "}
-            </h6>
-            <CreateClass />
+              sessions to enhance your students' learning journey also
+              integrated quiz platform todo platform all are integrated for
+              continuous learing
+            </p>
+
+            <Link href="/qatutor">
+              <button className="p-[3px] relative">
+                <div className="absolute  rounded-xl inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 " />
+                <div className="px-8 py-2  bg-slate-900  rounded-[6px]  relative group transition duration-200 text-white hover:bg-transparent">
+                  Try Todo
+                </div>
+              </button>
+            </Link>
           </div>
-          <div className="hidden lg:block p-6 w-full sm:w-[50%]">
+          <div className="hidden lg:block pl-9 w-full sm:w-[40%]">
             <Image
               src={landingGroup2}
               alt="Login image"
@@ -200,7 +254,38 @@ const Home = () => {
             />
           </div>
         </div>
-        <div className="p-6 rounded-lg shadow-md text-center tour-step-3">
+        <div className="flex flex-col items-center justify-center sm:flex-row sm:space-x-8">
+          {/* Image Section */}
+          <div className="hidden lg:block pl-9 w-full sm:w-[40%]">
+            <Image
+              src={landingGroup}
+              alt="Login image"
+              className="object-cover -z-10 w-full h-auto"
+            />
+          </div>
+          {/* Text and Call-to-Action Section */}
+          <div className="p-6 sm:p-16 w-full sm:w-[60%]">
+            <h1 className="font-bold text-3xl sm:text-4xl font-serif mb-4">
+              Quiz Time
+            </h1>
+            <p className="text-sm mb-8">
+              Effortlessly join your classroom with the unique code provided by
+              your educator. Collaborate with peers, participate in discussions,
+              and access all the resources you need for an engaging learning
+              experience.
+            </p>
+
+            <Link href="/qatutor">
+              <button className="p-[3px] relative">
+                <div className="absolute  rounded-xl inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 " />
+                <div className="px-8 py-2  bg-slate-900  rounded-[6px]  relative group transition duration-200 text-white hover:bg-transparent">
+                  Try Quiz
+                </div>
+              </button>
+            </Link>
+          </div>
+        </div>
+        <div className="p-6 rounded-lg shadow-md text-center ">
           <h1 className="font-bold text-2xl sm:text-5xl mb-4">
             Upgrade to Premium
           </h1>
@@ -224,8 +309,14 @@ const Home = () => {
             our comprehensive premium features.
           </h3>
           <Link href={"/subscription"}>
-            <button className="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-              Subscribe Now
+            <button className="mt-10  transition-transform duration-300 transform hover:scale-110 tour-step-3 relative inline-flex h-16 overflow-hidden rounded-full p-2 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
+              <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+              <span
+                className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-4 py-2 text-lg font-medium text-white backdrop-blur-3xl
+   "
+              >
+                Subscribe Now
+              </span>
             </button>
           </Link>
         </div>
