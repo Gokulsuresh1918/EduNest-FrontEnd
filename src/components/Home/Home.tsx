@@ -185,12 +185,12 @@ const  handletodo=()=> {
               Your Personal AI Tutor
             </h1>
             <p className="text-sm mb-8">
-              "Introducing our AI Personal Tutor—a revolutionary feature
+            &quot;Introducing our AI Personal Tutor—a revolutionary feature
               designed to enhance learning with intelligent, personalized
               guidance. Seamlessly interact, receive tailored explanations, and
               optimize your learning journey effortlessly. Elevate your
               education with cutting-edge AI technology, ensuring every question
-              finds its expert answer.".
+              finds its expert answer&quot;
             </p>
 
             {/* Call-to-action button or link */}
@@ -233,7 +233,7 @@ const  handletodo=()=> {
             <p className="text-sm mb-8">
               Empower your teaching with our easy-to-use tools. Create a virtual
               classroom, manage tasks, share resources, and conduct live
-              sessions to enhance your students' learning journey also
+              sessions to enhance your student&apos;s learning journey also
               integrated quiz platform todo platform all are integrated for
               continuous learing
             </p>

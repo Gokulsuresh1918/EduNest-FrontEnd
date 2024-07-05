@@ -62,7 +62,7 @@ function App() {
 
   useEffect(() => {
     fetchTodos();
-  }, [BASE_URL]);
+  }, [BASE_URL,fetchTodos]);
 
   const getCurrentDay = () => {
     const days = [
@@ -182,7 +182,7 @@ function App() {
       >
         <div className="subHeading mt-4">
           <h2 className="text-center text-sm sm:text-2xl">
-            Whoop, it's {getCurrentDay()} let's plan today 🌝☕
+            Whoop&apos; it&apos;s {getCurrentDay()} let&apos;s plan today 🌝☕
           </h2>
         </div>
         <div className="input flex justify-center items-center mt-3">
