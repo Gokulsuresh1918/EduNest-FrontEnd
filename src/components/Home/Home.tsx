@@ -79,7 +79,9 @@ const Home = () => {
       localStorage.setItem("isTourShown", "true");
     }
   }, []);
-
+const  handletodo=()=> {
+  router.push('/todotracker')
+}
   return (
     <div>
       <Nav className="tour-step-1" />
@@ -220,7 +222,6 @@ const Home = () => {
             </Link>
           </div>
         </div>
-        
         <div className="flex flex-col items-center justify-center sm:flex-row sm:space-x-8">
           {/* Image Section */}
 
@@ -237,14 +238,13 @@ const Home = () => {
               continuous learing
             </p>
 
-            <Link href="/qatutor">
-              <button className="p-[3px] relative">
+         
+              <button onClick={handletodo} className="p-[3px] relative">
                 <div className="absolute  rounded-xl inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 " />
                 <div className="px-8 py-2  bg-slate-900  rounded-[6px]  relative group transition duration-200 text-white hover:bg-transparent">
                   Try Todo
                 </div>
               </button>
-            </Link>
           </div>
           <div className="hidden lg:block pl-9 w-full sm:w-[40%]">
             <Image
@@ -275,7 +275,7 @@ const Home = () => {
               experience.
             </p>
 
-            <Link href="/qatutor">
+            <Link href="https://quizhub-gokul.vercel.app/">
               <button className="p-[3px] relative">
                 <div className="absolute  rounded-xl inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 " />
                 <div className="px-8 py-2  bg-slate-900  rounded-[6px]  relative group transition duration-200 text-white hover:bg-transparent">
