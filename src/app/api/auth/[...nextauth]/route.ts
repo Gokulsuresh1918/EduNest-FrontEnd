@@ -19,6 +19,8 @@ const authOptions = {
       clientSecret: process.env.GITHUB_SECRET || "",
     }),
   ],
+
+  
   callbacks: {
     async signIn({    
       user,

@@ -52,24 +52,12 @@ const Sidenav = () => {
     setMenuOpen(false);
   };
   const handleTodo = () => {
-    Swal.fire({
-      title: "Confirm Redirection!!",
-      text: " ToDo App is not completed, so we are about to be redirected to our Partner Todo app.",
-      icon: "question",
-      showCancelButton: true,
-      confirmButtonText: "Yes, proceed",
-      cancelButtonText: "Cancel",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        window.open("https://to-do-gokul.vercel.app/", "_blank");
-        setMenuOpen(false);
-      }
-    });
+  router.push('/todotracker')
   };
 
   const handleQuiz = () => {
     Swal.fire({
-      title: "Confirm Redirection!!",
+      title: "Confirm changing site!!",
       text: " Quiz App is not completed ,so we are about to be redirected to our Partner quiz app.",
       icon: "question",
       showCancelButton: true,

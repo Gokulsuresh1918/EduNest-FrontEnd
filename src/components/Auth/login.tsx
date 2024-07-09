@@ -247,7 +247,7 @@ const LoginPage = () => {
                   )}
                   <Button
                     disabled={isSubmitting}
-                    className="bg-blue-800 rounded-xl text-white"
+                    className="bg-blue-800 hover:bg-blue-950 rounded-xl text-white"
                     variant="outline"
                   >
                     {isSubmitting ? "...Loading" : "Log In"}

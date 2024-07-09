@@ -14,9 +14,7 @@ const WhiteBoardCanvas: React.FC = () => {
   const [currentColor, setCurrentColor] = useState("black");
   const [lineWidth, setLineWidth] = useState(3);
   const [drawingActions, setDrawingActions] = useState<DrawingAction[]>([]);
-  const [currentPath, setCurrentPath] = useState<{ x: number; y: number }[]>(
-    []
-  );
+  const [currentPath, setCurrentPath] = useState<{ x: number; y: number }[]>([]);
   const [currentStyle, setCurrentStyle] = useState({
     color: "black",
     lineWidth: 3,
@@ -40,8 +38,8 @@ const WhiteBoardCanvas: React.FC = () => {
   useEffect(() => {
     if (canvasRef.current) {
       const canvas = canvasRef.current;
-      canvas.width = 1100;
-      canvas.height = 500;
+      canvas.width = canvas.parentElement!.clientWidth;
+      canvas.height = canvas.parentElement!.clientHeight * 0.75;
       const ctx = canvas.getContext("2d");
       if (ctx) {
         setContext(ctx);
@@ -142,17 +140,17 @@ const WhiteBoardCanvas: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <canvas
         ref={canvasRef}
         onMouseDown={startDrawing}
         onMouseMove={draw}
         onMouseUp={endDrawing}
         onMouseOut={endDrawing}
-        className="border border-gray-400"
+        className="border border-gray-400 w-full h-64 sm:h-80 md:h-96 lg:h-500 xl:h-600"
       />
-      <div className="flex my-4">
-        <div className="flex justify-center space-x-4">
+      <div className="flex flex-col sm:flex-row my-4 items-center w-full justify-between">
+        <div className="flex justify-center space-x-2 sm:space-x-4 mb-4 sm:mb-0">
           {["red", "blue", "green", "yellow", "black"].map((color) => (
             <div
               key={color}
@@ -165,18 +163,20 @@ const WhiteBoardCanvas: React.FC = () => {
             />
           ))}
         </div>
-        <div className="flex-grow" />
-        <input
-          type="range"
-          min="1"
-          max="10"
-          value={lineWidth}
-          onChange={(e) => changeWidth(Number(e.target.value))}
-        />
+        <div className="flex-grow flex justify-center sm:justify-end w-full sm:w-auto">
+          <input
+            type="range"
+            min="1"
+            max="10"
+            value={lineWidth}
+            onChange={(e) => changeWidth(Number(e.target.value))}
+            className="w-full sm:w-auto"
+          />
+        </div>
       </div>
-      <div className="flex justify-center my-4">
+      <div className="flex justify-center my-4 space-x-2">
         <button
-          className="bg-blue-500 text-white px-4 py-2 mr-2"
+          className="bg-blue-500 text-white px-4 py-2"
           onClick={undoDrawing}
         >
           Undo

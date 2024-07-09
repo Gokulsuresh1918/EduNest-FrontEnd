@@ -210,6 +210,7 @@ export function CreateClass(status: any) {
                       <Input
                         id="profilePicture"
                         type="file"
+                        placeholder="profilePicture...."
                         onChange={(e) => {
                           if (e.target.files && e.target.files.length > 0) {
                             setProfilePicture(e.target.files[0]);
