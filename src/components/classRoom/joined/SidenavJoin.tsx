@@ -52,6 +52,12 @@ const Sidenav = () => {
   const handlewhiteBoard = () => {
     router.push(`/whiteBoard`);
   };
+  const handleTodo = () => {
+    router.push(`/todotracker`);
+  };
+  const handleQuiz = () => {
+    router.push(`https://quizhub-gokul.vercel.app/`);
+  };
   const handleAssignTask = () => {
     setSide(!side);
     setNotificationCount(0);
@@ -113,14 +119,14 @@ const Sidenav = () => {
           <h2>WhiteBoard</h2>
         </div>
         <div
-          // onClick={handleTodo}
+          onClick={handleTodo}
           className="group flex gap-3 mt-2 p-3 text-[18px] items-center text-gray-500 cursor-pointer hover:bg-[#624DE3] hover:text-white rounded-md transition-all ease-in-out duration-200"
         >
           <ListTodo className="group-hover:animate-bounce" />
           <h2>Todo</h2>
         </div>
         <div
-          // onClick={handleQuiz}
+          onClick={handleQuiz}
           className="group flex gap-3 mt-2 p-3 text-[18px] items-center text-gray-500 cursor-pointer hover:bg-[#624DE3] hover:text-white rounded-md transition-all ease-in-out duration-200"
         >
           <GraduationCap className="group-hover:animate-bounce" />
