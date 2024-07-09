@@ -64,13 +64,13 @@ const Sidenav = () => {
 
   };
   const handleVideo = () => {
-    notification=''
     notification
-      ? Router.push(`${CLIENT}/room/${classCode}`)
-      : toast("Teacher not started a call", {
-          position: "bottom-left",
-          autoClose: 4000,
-        });
+    ? Router.push(`${CLIENT}/room/${classCode}`)
+    : toast("Teacher not started a call", {
+      position: "bottom-left",
+      autoClose: 4000,
+    });
+    notification=''
   };
 
   useEffect(() => {
