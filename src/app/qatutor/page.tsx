@@ -107,7 +107,9 @@ const QATutorPage = () => {
                 }`}
               >
                 <h2 className="text-xl text-orange-300 font-bold mb-2">Answer:</h2>
-                <p className="text-gray-300">{answer}</p>
+                <p className={`${
+                  theme === "dark" ? "text-white" : " text-black" 
+                }`}>{answer}</p>
               </div>
             )}
           </main>
