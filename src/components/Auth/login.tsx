@@ -13,11 +13,13 @@ import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast, ToastContainer } from "react-toastify";
 import { z } from "zod";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import { userStore } from "../../../globalStore/store";
 import githubimg from "../../../public/images/githublogo.png";
 import googleimg from "../../../public/images/google logo.png";
 import Logo from "../../../public/images/logo.png";
 import imageUrl from "../../../public/images/signupimage.png";
+import { Copy } from "lucide-react";
 
 // Environment variable for base URL
 const BASE_URL = process.env.NEXT_PUBLIC_SERVER_URL;
@@ -58,7 +60,7 @@ const LoginPage = () => {
     formState: { errors, isSubmitting },
   } = useForm<FormField>({
     defaultValues: {
-      email: "example@gmail.com",
+      email: "",
       password: "",
     },
     resolver: zodResolver(schema),
@@ -223,12 +225,37 @@ const LoginPage = () => {
                   onSubmit={handleSubmit(onSubmit)}
                   className="flex flex-col w-full gap-4"
                 >
+                  {/* Demo email and password section */}
+                  <p className="pt-0 text-yellow-700 text-sm">
+                    <span className="text-base font-bold pr-3 text-black">
+                      Demo Mail:
+                    </span>
+                    edunestofficials@gmail.com
+                    <CopyToClipboard text="edunestofficials@gmail.com">
+                      <button className=" text-green-600 ml-2 font-normal">
+                        <Copy />
+                      </button>
+                    </CopyToClipboard>
+                  </p>
+                  <p className="pt-0 text-yellow-700 text-sm">
+                    <span className="text-base font-bold pr-3 text-black">
+                      Demo Pass:
+                    </span>
+                    asdfasdf
+                    <CopyToClipboard text="asdfasdf">
+                      <button className=" text-green-600 ml-2 font-normal">
+                        <Copy />
+                      </button>
+                    </CopyToClipboard>
+                  </p>
+                  {/* End of demo email and password section */}
                   <Input
                     {...register("email")}
                     type="email"
                     placeholder="Email"
                     className="bg-blue-300 rounded-xl border-red-50"
                   />
+
                   {errors.email && (
                     <p className="text-red-700 text-sm animate-pulse">
                       {errors.email.message}
@@ -240,6 +267,7 @@ const LoginPage = () => {
                     placeholder="Password"
                     className="bg-blue-300 rounded-xl border-red-50"
                   />
+
                   {errors.password && (
                     <p className="text-red-600 text-sm animate-pulse">
                       {errors.password.message}
