@@ -13,7 +13,6 @@ import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast, ToastContainer } from "react-toastify";
 import { z } from "zod";
-import { CopyToClipboard } from "react-copy-to-clipboard";
 import { userStore } from "../../../globalStore/store";
 import githubimg from "../../../public/images/githublogo.png";
 import googleimg from "../../../public/images/google logo.png";
@@ -202,6 +201,23 @@ const LoginPage = () => {
     setCodeVerified(false);
   };
 
+  // Function to copy text to clipboard
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        toast.success("Copied to clipboard!", {
+          position: "top-right",
+        });
+      })
+      .catch((err) => {
+        toast.error("Failed to copy!", {
+          position: "top-right",
+        });
+        console.error("Failed to copy: ", err);
+      });
+  };
+
   return (
     <>
       {login && (
@@ -231,22 +247,28 @@ const LoginPage = () => {
                       Demo Mail:
                     </span>
                     edunestofficials@gmail.com
-                    <CopyToClipboard text="edunestofficials@gmail.com">
-                      <button className=" text-green-600 ml-2 font-normal">
-                        <Copy />
-                      </button>
-                    </CopyToClipboard>
+                    <button
+                      type="button"
+                      className="text-green-600 ml-2 font-normal"
+                      onClick={() =>
+                        copyToClipboard("edunestofficials@gmail.com")
+                      }
+                    >
+                      <Copy />
+                    </button>
                   </p>
                   <p className="pt-0 text-yellow-700 text-sm">
                     <span className="text-base font-bold pr-3 text-black">
                       Demo Pass:
                     </span>
                     asdfasdf
-                    <CopyToClipboard text="asdfasdf">
-                      <button className=" text-green-600 ml-2 font-normal">
-                        <Copy />
-                      </button>
-                    </CopyToClipboard>
+                    <button
+                      type="button"
+                      className="text-green-600 ml-2 font-normal"
+                      onClick={() => copyToClipboard("asdfasdf")}
+                    >
+                      <Copy />
+                    </button>
                   </p>
                   {/* End of demo email and password section */}
                   <Input
