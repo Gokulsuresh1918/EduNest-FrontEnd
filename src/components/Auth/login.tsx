@@ -402,7 +402,7 @@ const LoginPage = () => {
                   </Link>
                 </h3>
               </div>
-              <div className="flex justify-center items-center space-x-5">
+              {/* <div className="flex justify-center items-center space-x-5">
                 <Image
                   onClick={() => signIn("google")}
                   src={googleimg}
@@ -419,7 +419,7 @@ const LoginPage = () => {
                   height={60}
                   className="cursor-pointer"
                 />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

@@ -166,7 +166,7 @@ const SignUpPage = () => {
             </Link>
           </h3>
         </div>
-        <div className="flex justify-center items-center space-x-5 my-5">
+        {/* <div className="flex justify-center items-center space-x-5 my-5">
           <Image
             onClick={handleGoogleSignIn}
             src={googleimg}
@@ -183,7 +183,7 @@ const SignUpPage = () => {
             height={60}
             className="cursor-pointer"
           />
-        </div>
+        </div> */}
       </div>
 
       <div className="w-full md:w-1/2 hidden md:block h-screen">
